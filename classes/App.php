@@ -25,11 +25,6 @@ class App
 		 * Make instance of the plugin
 		 */
 		new Plugin();
-
-		/*
-		 * Check for updates
-		 */
-		Updator::checkForUpdate();
 	}
 
 	public static function disable()
