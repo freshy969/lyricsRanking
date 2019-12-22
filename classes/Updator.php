@@ -9,15 +9,15 @@ use ZipArchive;
 
 class Updator {
     private static $version = LyricsRanking_VER;
-    private static $zip_file;
-    private static $latest_plugin_dir;
-    private static $plugin_dir;
+    private static $dirs = array();
 
     public function __construct()
     {
-        self::$zip_file = plugin_dir_path(__DIR__)."latest.zip";
-        self::$latest_plugin_dir = plugin_dir_path(__DIR__)."lyricsRanking-master/{,.[^.]}*";
-        self::$plugin_dir = plugin_dir_path(__DIR__); 
+        self::$dirs = array(
+            'zip'=>plugin_dir_path(__DIR__)."latest.zip",
+            'latest_plugin_dir'=>plugin_dir_path(__DIR__)."lyricsRanking-master/{,.[^.]}*",
+            'plugin_dir' => plugin_dir_path(__DIR__)
+        );
     }
 
     private static function getCurrentVersion() {
@@ -29,21 +29,21 @@ class Updator {
 
     public static function checkForUpdate() {
         if(self::$version != self::getCurrentVersion()) 
-            file_put_contents(self::$zip_file, fopen('https://github.com/parallela/lyricsRanking/archive/master.zip', 'r'));
-            if(file_exists(self::$zip_file))
+            file_put_contents(self::$dirs['zip'], fopen('https://github.com/parallela/lyricsRanking/archive/master.zip', 'r'));
+            if(file_exists(self::$dirs['zip']))
                 self::update();
 
     }
 
     public static function update() {
         $zip = new ZipArchive;
-        $read = $zip->open(self::$zip_file);
+        $read = $zip->open(self::$dirs['zip']);
 
         if($read === true) {
-            $zip->extractTo(self::$plugin_dir);
+            $zip->extractTo(self::$dirs['plugin_dir']);
             $zip->close();
-            shell_exec("mv ".self::$latest_plugin_dir." ".self::$plugin_dir);
-            unlink(self::$zip_file);
+            shell_exec("mv ".self::$dirs['latest_plugin_dir']." ".self::$dirs['plugin_dir']);
+            unlink(self::$dirs['zip']);
             self::rmdir_recursive(plugin_dir_path(__DIR__)."lyricsRanking-master");
         } else {
             return false;
