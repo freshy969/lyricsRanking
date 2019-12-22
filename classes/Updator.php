@@ -29,5 +29,6 @@ class Updator {
             shell_exec("mv ".plugin_dir_path(__DIR__).'lyricsRanking-master/*'. " " . plugin_dir_path(__DIR__) );
             file_put_contents(plugin_dir_path(__DIR__).'version',"");
             file_put_contents(plugin_dir_path(__DIR__).'version',self::getCurrentVersion());
+            unlink(plugin_dir_path(__DIR__).'latest.zip');
     }
 }
