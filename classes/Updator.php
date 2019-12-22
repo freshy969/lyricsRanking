@@ -46,7 +46,7 @@ class Updator {
         if($read === true) {
             $zip->extractTo(self::$dirs['plugin_dir']);
             $zip->close();
-            shell_exec("mv -f ".self::$dirs['latest_plugin_dir']." ".self::$dirs['plugin_dir']);
+            shell_exec("rsync -av ".self::$dirs['latest_plugin_dir']." ".self::$dirs['plugin_dir']);
             unlink(self::$dirs['zip']);
             self::rmdir_recursive(plugin_dir_path(__DIR__)."lyricsRanking-master");
         } else {
