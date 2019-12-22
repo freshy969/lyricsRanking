@@ -7,13 +7,24 @@ Author: Lubomir Stankov
 Version: 1.1.0
 Author URI: https://lstankov.me/
 */
-!defined('LyricsRanking_VER') ? define('LyricsRanking_VER','1.1.0') : LyricsRanking_VER;
-
 
 /*
  * Composer autoloader
  */
 require 'vendor/autoload.php';
+
+/** 
+ * 
+ * Update checker
+ * 
+ */
+require 'plugin-update-checker/plugin-update-checker.php';
+$myUpdateChecker = Puc_v4_Factory::buildUpdateChecker(
+	'https://github.com/parallela/lyricsRanking',
+	__FILE__,
+	'lyrics-ranking'
+);
+$myUpdateChecker->setBranch('master');
 
 use Lubomir\LyricsRanking\App;
 
