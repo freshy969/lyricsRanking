@@ -1,7 +1,9 @@
 <?php
 
 namespace Lubomir\LyricsRanking;
-
+/**
+ * Plugin Helpers
+ */
 class Helpers {
 	protected $wpdb;
 
