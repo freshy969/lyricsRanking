@@ -29,7 +29,7 @@ class Plugin {
 			$this,
 			'admin_menu'
 		), 'https://cdn.lyrics.bg/img/ranking_icon.png' );
-		add_submenu_page( 'lyrics_ranking.php', 'Add Rank', 'Add rank', 'manage_options', 'lyrics_ranking_add.php', array(
+		add_submenu_page( 'lyrics_ranking.php', 'Add Rank', 'Добави ранг', 'manage_options', 'lyrics_ranking_add.php', array(
 			$this,
 			'add_rank_admin_menu'
 		) );
@@ -50,10 +50,5 @@ class Plugin {
 
 		return $content;
 	}
-	// TODO
-	public function version() {
-
-	}
-
 
 }
