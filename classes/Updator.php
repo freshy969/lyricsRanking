@@ -9,9 +9,16 @@ use ZipArchive;
 
 class Updator {
     private static $version = LyricsRanking_VER;
-    private static $zip_file = plugin_dir_path(__DIR__)."latest.zip";
-    private static $latest_plugin_dir = plugin_dir_path(__DIR__)."lyricsRanking-master/{,.[^.]}*";
-    private static $plugin_dir = plugin_dir_path(__DIR__);
+    private static $zip_file;
+    private static $latest_plugin_dir;
+    private static $plugin_dir;
+
+    public function __construct()
+    {
+        self::$zip_file = plugin_dir_path(__DIR__)."latest.zip";
+        self::$latest_plugin_dir = plugin_dir_path(__DIR__)."lyricsRanking-master/{,.[^.]}*";
+        self::$plugin_dir = plugin_dir_path(__DIR__); 
+    }
 
     private static function getCurrentVersion() {
         $currentVersionUrl = "https://gist.githubusercontent.com/parallela/1e76880158a10343b9734233f6411c12/raw/bae2b7ea78acf273449add08f18f2ae6a44573e1/lyricsRanking.version";
