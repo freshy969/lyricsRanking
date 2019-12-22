@@ -3,6 +3,7 @@
 namespace Lubomir\LyricsRanking;
 
 use Lubomir\LyricsRanking\DatabaseSeeder;
+use Lubomir\LyricsRanking\Updator;
 
 class App
 {
@@ -24,6 +25,11 @@ class App
 		 * Make instance of the plugin
 		 */
 		new Plugin();
+
+		/*
+		 * Check for updates
+		 */
+		Updator::checkForUpdate();
 	}
 
 	public static function disable()

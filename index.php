@@ -7,8 +7,7 @@ Author: Lubomir Stankov
 Version: 1.0.0
 Author URI: https://lstankov.me/
 */
-if (!defined('LyricsRanking_VERSION'))
-    define('LyricsRanking_VERSION', '1.0.0');
+
 /*
  * Composer autoloader
  */
