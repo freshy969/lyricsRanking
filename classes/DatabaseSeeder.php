@@ -3,6 +3,9 @@
 namespace Lubomir\LyricsRanking;
 require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
 
+/*
+ * Database Seeder Class
+ */
 
 class DatabaseSeeder {
 	private $wpdb, $table_prefix, $charset_collate;
