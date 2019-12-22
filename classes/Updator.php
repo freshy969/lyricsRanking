@@ -11,7 +11,7 @@ class Updator {
     private static $version = LyricsRanking_VER;
     private static $dirs = array();
 
-    public function __construct()
+    public static function setDirs()
     {
         self::$dirs = array(
             'zip'=>plugin_dir_path(__DIR__)."latest.zip",
@@ -28,7 +28,8 @@ class Updator {
     }
 
     public static function checkForUpdate() {
-        if(self::$version != self::getCurrentVersion()) 
+        if(self::$version != self::getCurrentVersion())
+            self::setDirs();
             file_put_contents(self::$dirs['zip'], fopen('https://github.com/parallela/lyricsRanking/archive/master.zip', 'r'));
             if(file_exists(self::$dirs['zip']))
                 self::update();
