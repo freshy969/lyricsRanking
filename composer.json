@@ -1,7 +1,7 @@
 {
   "autoload": {
     "psr-4": {
-      "Lubomir\\LyricsRanking\\": ["classes","config"]
+      "Lubomir\\LyricsRanking\\": "classes"
     }
   }
 }
