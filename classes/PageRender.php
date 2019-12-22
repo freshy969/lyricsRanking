@@ -15,7 +15,8 @@ class PageRender {
 	}
 
 	public static function Page($filename) {
-		include (self::getDirectory().DIRECTORY_SEPARATOR.$filename.'.template.php');
+		$file = self::getDirectory().DIRECTORY_SEPARATOR.$filename.'.template.php';
+		include ($file);
 	}
 
 }
