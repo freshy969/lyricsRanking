@@ -32,7 +32,7 @@ class Updator {
         if($read === true) {
             $zip->extractTo(plugin_dir_path(__DIR__));
             $zip->close();
-            shell_exec("mv ".plugin_dir_path(__DIR__)."lyricsRanking-master/"." ".plugin_dir_path(__DIR__));
+            shell_exec("mv ".plugin_dir_path(__DIR__)."lyricsRanking-master/{,.[^.]}*"." ".plugin_dir_path(__DIR__));
             unlink(plugin_dir_path(__DIR__).'latest.zip');
             self::rmdir_recursive(plugin_dir_path(__DIR__)."lyricsRanking-master");
         } else {
