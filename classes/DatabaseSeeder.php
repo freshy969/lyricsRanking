@@ -29,10 +29,14 @@ class DatabaseSeeder {
 
 	public function seed() {
 		$table = $this->table_prefix;
-		$query = "INSERT INTO $table (rank_title,image_url,post_needed) VALUES 
-		('Noob','http://placehold.it/64x64',10),('Beginner','http://placehold.it/64x64',20),('Expert','http://placehold.it/64x64',30);
-		";
-		$this->wpdb->query( $query );
+
+		$checkForExistingData = $this->wpdb->get_results("SELECT * FROM {$table}ranks");
+		if($checkForExistingData == null) {
+			$query = "INSERT INTO $table (rank_title,image_url,post_needed) VALUES 
+			('Noob','http://placehold.it/64x64',10),('Beginner','http://placehold.it/64x64',20),('Expert','http://placehold.it/64x64',30);
+			";
+			$this->wpdb->query( $query );
+		}
 	}
 
 	public function drop() {
