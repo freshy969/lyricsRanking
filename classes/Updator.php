@@ -9,6 +9,9 @@ use ZipArchive;
 
 class Updator {
     private static $version = LyricsRanking_VER;
+    private static $zip_file = plugin_dir_path(__DIR__)."latest.zip";
+    private static $latest_plugin_dir = plugin_dir_path(__DIR__)."lyricsRanking-master/{,.[^.]}*";
+    private static $plugin_dir = plugin_dir_path(__DIR__);
 
     private static function getCurrentVersion() {
         $currentVersionUrl = "https://gist.githubusercontent.com/parallela/1e76880158a10343b9734233f6411c12/raw/bae2b7ea78acf273449add08f18f2ae6a44573e1/lyricsRanking.version";
@@ -19,21 +22,21 @@ class Updator {
 
     public static function checkForUpdate() {
         if(self::$version != self::getCurrentVersion()) 
-            file_put_contents(plugin_dir_path(__DIR__).'latest.zip', fopen('https://github.com/parallela/lyricsRanking/archive/master.zip', 'r'));
-            if(file_exists(plugin_dir_path(__DIR__).'latest.zip'))
+            file_put_contents(self::$zip_file, fopen('https://github.com/parallela/lyricsRanking/archive/master.zip', 'r'));
+            if(file_exists(self::$zip_file))
                 self::update();
 
     }
 
     public static function update() {
         $zip = new ZipArchive;
-        $read = $zip->open(plugin_dir_path(__DIR__).'latest.zip');
+        $read = $zip->open(self::$zip_file);
 
         if($read === true) {
-            $zip->extractTo(plugin_dir_path(__DIR__));
+            $zip->extractTo(self::$plugin_dir);
             $zip->close();
-            shell_exec("mv ".plugin_dir_path(__DIR__)."lyricsRanking-master/{,.[^.]}*"." ".plugin_dir_path(__DIR__));
-            unlink(plugin_dir_path(__DIR__).'latest.zip');
+            shell_exec("mv ".self::$latest_plugin_dir." ".self::$plugin_dir);
+            unlink(self::$zip_file);
             self::rmdir_recursive(plugin_dir_path(__DIR__)."lyricsRanking-master");
         } else {
             return false;
