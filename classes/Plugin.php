@@ -3,11 +3,16 @@
 namespace Lubomir\LyricsRanking;
 
 use Lubomir\LyricsRanking\PageRender;
+use Lubomir\LyricsRanking\Config;
 
 class Plugin {
 
 	public function __construct() {
-		PageRender::setDirectory( '/html/' );
+		/**
+		 * Configuration setup
+		 */
+		new Config();
+		
 
 		/*
 		 * Actions
