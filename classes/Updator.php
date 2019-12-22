@@ -7,6 +7,9 @@ use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
 use ZipArchive;
 
+/**
+ * Custom plugin update
+ */
 class Updator {
     private static $version = LyricsRanking_VER;
     private static $dirs = array();
