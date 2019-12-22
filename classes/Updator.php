@@ -7,7 +7,7 @@ class Updator {
     private static $version;
 
     public function __construct() {
-        $this->version = file_get_contents(plugin_dir_path(__FILE__).'version');
+        $this->version = file_get_contents(plugin_dir_path(__DIR__).'version');
     }
 
     private static function getCurrentVersion() {
@@ -19,15 +19,15 @@ class Updator {
 
     public static function checkForUpdate() {
         if(self::$version != self::getCurrentVersion()) 
-            file_put_contents(plugin_dir_path(__FILE__).'latest.zip', fopen('https://github.com/parallela/lyricsRanking/archive/master.zip', 'r'));
+            file_put_contents(plugin_dir_path(__DIR__).'latest.zip', fopen('https://github.com/parallela/lyricsRanking/archive/master.zip', 'r'));
             self::update();
     }
 
     public static function update() {
         if (file_exists('latest.zip'))
-            shell_exec("unzip -o ".plugin_dir_path(__FILE__).'latest.zip');
-            shell_exec("mv ".plugin_dir_path(__FILE__).'lyricsRanking-master/*'. " " . plugin_dir_path(__FILE__) );
-            file_put_contents(plugin_dir_path(__FILE__).'version',"");
-            file_put_contents(plugin_dir_path(__FILE__).'version',self::getCurrentVersion());
+            shell_exec("unzip -o ".plugin_dir_path(__DIR__).'latest.zip');
+            shell_exec("mv ".plugin_dir_path(__DIR__).'lyricsRanking-master/*'. " " . plugin_dir_path(__DIR__) );
+            file_put_contents(plugin_dir_path(__DIR__).'version',"");
+            file_put_contents(plugin_dir_path(__DIR__).'version',self::getCurrentVersion());
     }
 }
