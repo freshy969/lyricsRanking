@@ -4,7 +4,7 @@ Plugin Name: Lyrics Ranking
 Plugin URI: https://ranking.lyrics.bg
 Description: Custom plugin for ranking made for lyrics.bg
 Author: Lubomir Stankov
-Version: 1.1.1
+Version: 1.1.2
 Author URI: https://lstankov.me/
 */
 
