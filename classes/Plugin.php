@@ -19,7 +19,6 @@ class Plugin {
 		 */
 		add_action( 'admin_menu', array( $this, 'admin_menu_register' ) );
 		add_action( 'admin_register', array( $this, 'admin_menu_register' ) );
-		add_action('version_check', array($this, 'version'));
 		add_shortcode( 'top_users', array( $this, 'ranking' ) );
 
 	}
